@@ -46,3 +46,4 @@ A clean database schema file is included in this repository:
 3. Start Apache and MySQL in XAMPP
 4. Import `database_schema.sql` into phpMyAdmin
 5. Open your browser and go to:
+http://localhost/your-project-folder

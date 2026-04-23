@@ -1,0 +1,189 @@
+/* ===== Dark Mode Core ===== */
+
+/* 1) Tokens */
+:root {
+  /* base */
+  --bg: #e5eefc;
+  --fg: #0f172a;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --overlay: rgba(0,0,0,.40);
+
+  /* surfaces */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+
+  /* inputs */
+  --input-bg: #ffffff;
+  --input-fg: #0f172a;
+  --input-border: #cbd5e1;
+  --file-button-bg: #f1f5f9;
+
+  /* brand */
+  --primary-bg: #2563eb;
+  --primary-fg: #ffffff;
+
+  /* status badges (light) */
+  --badge-bg: #f1f5f9;  --badge-fg: #334155;
+
+  /* toast (light) */
+  --toast-ok-bg:#ecfdf5;   --toast-ok-border:#a7f3d0;   --toast-ok-fg:#065f46;
+  --toast-warn-bg:#fefce8; --toast-warn-border:#fde68a; --toast-warn-fg:#92400e;
+  --toast-err-bg:#fef2f2;  --toast-err-border:#fecaca;  --toast-err-fg:#991b1b;
+
+  /* extra tokens used later */
+  --surface-1: #ffffff;
+  --surface-2: #f8fafc;
+  --text-1: #0f172a;
+  --text-2: #334155;
+  --border-strong: #e5e7eb;
+  --border-mute: #eef2f7;
+  --accent-1: #4f46e5;
+}
+
+:root.dark {
+  --bg: #0b1220;
+  --fg: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #334155;
+  --overlay: rgba(0,0,0,.75);
+
+  --card-bg: #0f172a;
+  --card-border: #334155;
+
+  --input-bg: #1e293b;
+  --input-fg: #f1f5f9;
+  --input-border: #475569;
+  --file-button-bg: #334155;
+
+  --badge-bg: #e2e8f0;
+  --badge-fg: #0f172a;
+
+  /* dark variants */
+  --surface-1: #0f172a;
+  --surface-2: #111827;
+  --text-1: #e5e7eb;
+  --text-2: #cbd5e1;
+  --border-strong: #334155;
+  --border-mute: #1f2937;
+  --accent-1: #6366f1;
+}
+
+/* 2) Page */
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); }
+body::after { background: var(--overlay); }
+
+/* 3) Surfaces */
+.card,
+.modal-content,
+.table-shell { background: var(--card-bg); color: var(--fg); border: 1px solid var(--card-border); }
+
+/* Inputs */
+input, select, textarea {
+  background: var(--input-bg);
+  color: var(--input-fg);
+  border: 1px solid var(--input-border);
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input[type="file"]::file-selector-button {
+  background: var(--file-button-bg);
+  color: var(--fg);
+  border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer;
+}
+
+/* Buttons (scoped so ghost/reset aren’t overridden) */
+.btn, .button-primary {
+  background: var(--primary-bg);
+  color: var(--primary-fg);
+  border: none;
+}
+.btn:hover, .button-primary:hover { filter: brightness(0.95); }
+
+/* Ghost/secondary */
+.btn-ghost, .button-ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--input-border);
+}
+
+/* Tooltip */
+.tooltip { background: #0f172a; color: #fff; }
+
+/* Badges */
+.badge { background: var(--badge-bg); color: var(--badge-fg); font-weight: 600; }
+
+/* Toasts */
+.toast.ok    { background: var(--toast-ok-bg);    border: 1px solid var(--toast-ok-border);    color: var(--toast-ok-fg); }
+.toast.warn  { background: var(--toast-warn-bg);  border: 1px solid var(--toast-warn-border);  color: var(--toast-warn-fg); }
+.toast.error { background: var(--toast-err-bg);   border: 1px solid var(--toast-err-border);   color: var(--toast-err-fg); }
+
+/* Tables */
+table { background: var(--surface-1); color: var(--text-1); }
+thead th { background: var(--surface-2); color: var(--text-1); border-bottom: 1px solid var(--border-strong); }
+td { color: var(--text-2); border-bottom: 1px solid var(--border-mute); }
+tbody tr:nth-child(even){ background: var(--surface-2); }
+.col-sticky-right { background: var(--surface-1); }
+
+/* Optional smooth transition */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-fade, .card, .table-shell, .modal .sheet, body {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+}
+
+/* ===== Admin page extra tweaks ===== */
+:root.dark body.ketua::after { background: rgba(0,0,0,.55); }
+
+:root.dark .topbar,
+:root.dark .card,
+:root.dark .slide-panel,
+:root.dark .modal .sheet,
+:root.dark .table-shell {
+  background: var(--surface-1);
+  border-color: var(--border-strong);
+}
+
+:root.dark .filter-card select,
+:root.dark .filter-card input[type="date"],
+:root.dark .filter-card input[type="text"],
+:root.dark textarea.pretty,
+:root.dark select {
+  background: var(--surface-2);
+  color: var(--text-1);
+  border-color: var(--border-strong);
+}
+
+:root.dark .remark-box { background: var(--surface-2); border-color: var(--border-strong); }
+:root.dark .kv .k { color: var(--text-2); }
+:root.dark .kv .v { color: var(--text-1); }
+
+:root.dark .slide-overlay { background: rgba(0,0,0,.5); }
+
+.page-btn { background: var(--surface-2); color: var(--text-1); border: 1px solid var(--border-strong); }
+.page-btn.active { background: var(--accent-1); color: #fff; }
+
+/* Ghost/secondary buttons stay transparent in dark */
+:root.dark .btn-ghost,
+:root.dark .button-ghost,
+:root.dark .filter-bar .reset-btn {
+  background: transparent !important;
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
+}
+:root.dark .filter-bar .reset-btn:hover { background: var(--surface-2) !important; }
+
+/* Remove flickery filter-based hover in dark */
+:root.dark button:hover,
+:root.dark .button-primary:hover,
+:root.dark .details-btn:hover,
+:root.dark .btn-neutral:hover {
+  opacity: .92;
+  filter: none !important;
+}
+
+/* Inline-colored buttons keep white text in dark */
+:root.dark button[style*="background"],
+:root.dark .btn[style*="background"] {
+  color: #fff !important;
+}

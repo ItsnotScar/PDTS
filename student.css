@@ -1,0 +1,426 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
+body{background:#f4f6fb;color:#333;min-height:100vh}
+
+/* HEADER */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(116,148,236,0.9);color:#fff;padding:18px 30px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+  backdrop-filter:saturate(120%) blur(2px);
+}
+.header h1{font-size:22px;font-weight:700;text-decoration:underline}
+
+/* PROFILE */
+.profile{position:relative;display:flex;align-items:center;gap:12px;cursor:pointer}
+.profile-logo{font-size:22px}
+.profile-arrow{font-size:12px;transition:.3s}
+.profile-arrow.open{transform:rotate(180deg)}
+.profile-dropdown{
+  position:absolute;top:38px;right:0;background:#fff;color:#333;border-radius:8px;
+  padding:12px 18px;box-shadow:0 4px 12px rgba(0,0,0,.2);min-width:200px;
+  opacity:0;transform:translateY(-10px);transition:all .25s ease;display:none;z-index:1001
+}
+.profile-dropdown.show{display:block;opacity:1;transform:translateY(0)}
+.profile-dropdown p,.profile-dropdown a{margin:5px 0;font-size:14px;transition:color .2s}
+.profile-dropdown p:hover,.profile-dropdown a:hover{color:#7494ec}
+
+/* DASHBOARD */
+.dashboard-container{display:flex;flex-direction:column;align-items:center;max-width:1150px;margin:30px auto;padding:0 16px}
+.card{
+  background:rgba(255,255,255,.96);padding:22px;margin-bottom:22px;border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);width:100%;max-width:1100px;
+  border:1px solid rgba(2,6,23,.06);transition:transform .3s,box-shadow .3s
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.welcome-card{text-align:center}
+
+/* BUTTONS */
+button{padding:10px 16px;background:#7494ec;color:#fff;border:none;border-radius:8px;font-size:15px;cursor:pointer;transition:.25s}
+button:hover{background:#5e7ad9}
+.small-btn{padding:8px 12px;font-size:14px;border-radius:8px}
+
+/* CARD HEADER */
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ===== TABLE (compact + fixed) ===== */
+.table-shell{overflow-x:auto}
+.complaint-table{
+  width:100%;
+  border-collapse:separate;border-spacing:0;
+  table-layout:fixed;               /* Force widths to apply */
+  font-size:13px;
+}
+.complaint-table th,
+.complaint-table td{
+  padding:8px 8px;                  /* tighter */
+  border:1px solid #e7e7e7;
+  text-align:center;
+  line-height:1.25;
+  vertical-align:middle;
+  background:rgba(255,255,255,0.96);
+}
+.complaint-table thead th{
+  background:rgba(242,242,242,0.9);
+  font-weight:700;
+}
+
+/* Column widths (default) */
+.complaint-table .col-num{   width:42px }
+.complaint-table .col-title{ width:34% }
+.complaint-table .col-cat{   width:16% }
+.complaint-table .col-pri{   width:90px }
+.complaint-table .col-sta{   width:96px }
+.complaint-table .col-act{   width:78px }
+
+/* Prevent title from pushing action column */
+.complaint-table td.col-title{
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+
+/* Chips and action button smaller */
+.badge{font-size:11px;padding:3px 8px;border-radius:999px;color:#fff;font-weight:600;display:inline-block}
+.details-btn{font-size:12px;padding:6px 8px;border-radius:8px;min-width:60px}
+
+/* BADGE COLORS */
+.priority-low{background:#6c757d}
+.priority-medium{background:#fd7e14}
+.priority-high{background:#dc3545}
+.priority-urgent{background:#8b0000}
+.status-pending{background:#f0ad4e}
+.status-in-progress{background:#17a2b8}
+.status-completed{background:#28a745}
+.status-rejected{background:#d9534f}
+
+.no-tickets{text-align:center;margin-top:12px;font-size:14px;color:#555}
+
+/* ===== MODALS ===== */
+.modal{display:none;position:fixed;z-index:999;padding-top:60px;left:0;top:0;width:100%;height:100%;overflow-y:auto;background-color:rgba(0,0,0,.55)}
+.modal-content{max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:14px;position:relative;box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.modal-content form input,
+.modal-content form select,
+.modal-content form textarea{
+  width:100%;padding:12px;background:#f2f2f2;border:none;border-radius:8px;margin-bottom:14px;font-size:15px;outline:none
+}
+.modal-content form textarea{resize:vertical;min-height:100px}
+.modal-content form button{width:100%}
+.ticket-details p{margin:8px 0;line-height:1.5}
+.ticket-details a{color:#7494ec;text-decoration:none;font-weight:500}
+.ticket-details a:hover{text-decoration:underline}
+
+/* CLOSE X */
+.close{position:absolute;top:14px;right:18px;font-size:26px;font-weight:bold;cursor:pointer;color:#333;transition:.2s}
+.close:hover{color:#7494ec;transform:scale(1.2)}
+
+/* LOGOUT BTN */
+.logout-form button{
+  width:100%;padding:6px 10px;background:#dc3545;color:#fff;border:none;border-radius:5px;font-weight:500;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px
+}
+.logout-form button:hover{background:#c82333}
+.logout-icon{font-size:14px;display:inline-block;transition:transform .3s ease}
+.logout-form button:hover .logout-icon{animation:slideBounce .4s forwards}
+@keyframes slideBounce{0%{transform:translateX(0)}60%{transform:translateX(6px)}80%{transform:translateX(2px)}100%{transform:translateX(4px)}}
+
+/* ===== Extra-compact on small phones ===== */
+@media (max-width:420px){
+  .complaint-table{font-size:12px}
+  .complaint-table th,.complaint-table td{padding:7px 6px}
+
+  /* Hide # and Category to make Action column always fit */
+  .complaint-table th.col-num, .complaint-table td.col-num,
+  .complaint-table th.col-cat, .complaint-table td.col-cat{ display:none }
+
+  /* Rebalance */
+  .complaint-table .col-title{ width:auto }
+  .complaint-table .col-pri{   width:84px }
+  .complaint-table .col-sta{   width:88px }
+  .complaint-table .col-act{   width:70px }
+
+  .badge{font-size:10.5px;padding:3px 7px}
+  .details-btn{font-size:11.5px;padding:6px 8px;min-width:56px}
+}
+
+/* Slightly larger phones */
+@media (421px <= width <= 500px){
+  .complaint-table .col-title{ width:40% }
+  .complaint-table .col-cat{ width:18% }
+  .complaint-table .col-pri{ width:90px }
+  .complaint-table .col-sta{ width:96px }
+  .complaint-table .col-act{ width:78px }
+}
+
+
+.flash {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* ─── Filter Tabs ─────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.tab:hover {
+  background: #e2e8f0;
+}
+
+.tab.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .tab-bar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Dark Mode Toggle ─────────────────────────── */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ─── Dark Mode Styling ─────────────────────────── */
+body.dark {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+body.dark .card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+body.dark .header {
+  background: #1e3a8a;
+  border-bottom: 1px solid #334155;
+}
+
+body.dark .complaint-table th {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+body.dark .complaint-table td {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+body.dark .small-btn {
+  background: #2563eb;
+  color: #fff;
+  border: 1px solid #2563eb;
+}
+
+body.dark .secondary-btn {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+body.dark .modal-content {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+/* Smooth transition */
+body, .card, .modal-content, .header {
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+body.dark::before {
+  filter: blur(8px) brightness(0.35) saturate(80%);
+}
+
+/* ─── Theme Toggle Wrapper ─────────────────────────── */
+.theme-toggle-wrap {
+  position: relative;
+  display: inline-block;
+  margin-left: 12px;
+}
+
+
+
+/* ─── Header Transition (Light <-> Dark) ───────────────────────────── */
+.header {
+  background: rgba(59, 130, 246, 0.9); /* Light mode: soft blue */
+  backdrop-filter: blur(10px);
+  transition: background 0.4s ease, color 0.4s ease;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Dark mode header */
+body.dark .header {
+  background: rgba(15, 23, 42, 0.95); /* Deep navy */
+  color: #f8fafc;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.header h1, 
+.header .profile span, 
+.header .theme-toggle {
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+
+/* Header layout update */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+/* Groups toggle and profile */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Makes the theme button clean and aligned */
+.theme-toggle {
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15);
+}
+
+/* ─── Floating Tooltip (below icon with soft delay & animation) ─────────────────────────── */
+.theme-tooltip {
+  position: absolute;
+  top: 140%; /* show BELOW the button */
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 99999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px) saturate(140%);
+  transition:
+    opacity 0.45s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.15s; /* 💫 slight hover delay */
+}
+
+/* Fade + float animation */
+.theme-toggle-wrap:hover .theme-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0.1s; /* starts slightly after hover */
+}
+
+/* Hide immediately when leaving */
+.theme-toggle-wrap:not(:hover) .theme-tooltip {
+  transition-delay: 0s;
+}
+
+/* Light background version for dark mode */
+body.dark .theme-tooltip {
+  background: rgba(241, 245, 249, 0.95);
+  color: #0f172a;
+  box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+}
+
+/* 🌙 Profile dropdown fix */
+body.dark .profile-dropdown {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #475569 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35) !important;
+}
+
+body.dark .profile-dropdown p strong {
+  color: #f8fafc !important;
+}
+
+body.dark .profile-dropdown p {
+  color: #e2e8f0 !important;
+}
+
+/* Logout button consistency */
+body.dark .logout-form button {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border: none !important;
+}
+body.dark .logout-form button:hover {
+  background: #b91c1c !important;
+}
+
+/* 🌙 Fix theme tooltip visibility */
+body.dark #themeTooltip {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #475569 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Optional: give the 🌙/☀️ button slight contrast in dark mode */
+body.dark #themeToggle {
+  background: #334155 !important;
+  color: #fcd34d !important;
+  border: 1px solid #475569 !important;
+}
+body.dark #themeToggle:hover {
+  background: #475569 !important;
+}
+
+

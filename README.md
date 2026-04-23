@@ -47,3 +47,9 @@ A clean database schema file is included in this repository:
 4. Import `database_schema.sql` into phpMyAdmin
 5. Open your browser and go to:
 http://localhost/your-project-folder
+
+## Notes
+
+- This system was developed as part of an academic project.  
+- The database schema is provided for setup and testing purposes.  
+- No production or sensitive data is included in this repository.
